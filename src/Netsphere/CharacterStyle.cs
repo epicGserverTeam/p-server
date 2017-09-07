@@ -19,7 +19,7 @@
             // It will ignore the face change TODO: Issue#1 fix it
             Face = (byte)(value >> 31 & 63);
             Shirt = (byte)(value >> 13 & 31);
-            Pants = (byte)(value >> 18 & 1023);
+            Pants = (byte)(value >> 18 & 31);
             Unk = (byte)(value >> 23 & 31);
             Slot = (byte)(value >> 28);
         }
