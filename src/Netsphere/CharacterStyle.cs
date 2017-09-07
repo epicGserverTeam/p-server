@@ -16,7 +16,8 @@
         {
             Gender = (CharacterGender)(value & 1);
             Hair = (byte)(value >> 1 & 63);
-            Face = (byte)(value >> 7 & 63);
+            // It will ignore the face change TODO: Issue#1 fix it
+            Face = (byte)(value >> 31 & 63);
             Shirt = (byte)(value >> 13 & 31);
             Pants = (byte)(value >> 18 & 1023);
             Unk = (byte)(value >> 23 & 31);
