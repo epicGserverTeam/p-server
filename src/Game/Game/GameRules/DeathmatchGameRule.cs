@@ -79,7 +79,7 @@ namespace Netsphere.Game.GameRules
                 team.Values.Count(plr =>
                     plr.RoomInfo.State != PlayerState.Lobby &&
                     plr.RoomInfo.State != PlayerState.Spectating));
-                if (min == 0)
+                if (min == 0 && !IsThereAnDeveloper())
                     StateMachine.Fire(GameRuleStateTrigger.StartResult);
 
                 var isFirstHalf = StateMachine.IsInState(GameRuleState.FirstHalf);
@@ -124,11 +124,11 @@ namespace Netsphere.Game.GameRules
                 return false;
 
             var teams = Room.TeamManager.Values.ToArray();
-            if (teams.Any(team => team.Count == 0)) // Do we have enough players?
+            if (teams.Any(team => team.Count == 0) && !IsThereAnDeveloper()) // Do we have enough players?
                 return false;
 
             // Is atleast one player per team ready?
-            return teams.All(team => team.Players.Any(plr => plr.RoomInfo.IsReady || Room.Master == plr));
+            return IsThereAnDeveloper() || teams.All(team => team.Players.Any(plr => plr.RoomInfo.IsReady || Room.Master == plr));
         }
 
         private static DeathmatchPlayerRecord GetRecord(Player plr)
