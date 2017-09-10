@@ -226,5 +226,12 @@ namespace Netsphere.Game.GameRules
                     break;
             }
         }
+
+        protected bool IsThereAnDeveloper()
+        {
+            if (Room.TeamManager.Players.Any(plr => plr.Account.SecurityLevel == SecurityLevel.Developer))
+                return true;    
+            return false;
+        }
     }
 }

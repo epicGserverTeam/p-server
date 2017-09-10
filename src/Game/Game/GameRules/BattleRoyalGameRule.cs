@@ -77,7 +77,7 @@ namespace Netsphere.Game.GameRules
                 if (StateMachine.IsInState(GameRuleState.FirstHalf))
                 {
                     // Still have enough players?
-                    if (teamMgr.PlayersPlaying.Count() < PlayersNeededToStart)
+                    if (teamMgr.PlayersPlaying.Count() < PlayersNeededToStart && !IsThereAnDeveloper())
                         StateMachine.Fire(GameRuleStateTrigger.StartResult);
 
                     // Did we reach ScoreLimit?
@@ -128,7 +128,7 @@ namespace Netsphere.Game.GameRules
                 return false;
 
             var countReady = Room.TeamManager.Values.Sum(team => team.Values.Count(plr => plr.RoomInfo.IsReady));
-            if (countReady < (PlayersNeededToStart - 1)) // Sum doesn't include master so decrease players needed by 1
+            if (countReady < (PlayersNeededToStart - 1) && !IsThereAnDeveloper()) // Sum doesn't include master so decrease players needed by 1
                 return false;
             return true;
         }
