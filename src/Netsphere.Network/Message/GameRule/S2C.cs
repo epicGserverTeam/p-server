@@ -978,6 +978,11 @@ namespace Netsphere.Network.Message.GameRule
         {
             Players = Array.Empty<CaptainLifeDto>();
         }
+
+        public SCaptainLifeRoundSetUpAckMessage(CaptainLifeDto[] captains)
+        {
+            Players = captains;
+        }
     }
 
     [BlubContract]

@@ -64,11 +64,14 @@ namespace Netsphere.Network.Services
                 return;
             }
 
+            // Is needed for the captain Mode to display the correct time
+            int minutes = message.Room.MatchKey.GameRule.ToString() == "Captain" ? 6 : message.Room.TimeLimit;
+
             var room = plr.Channel.RoomManager.Create(new RoomCreationOptions
             {
                 Name = message.Room.Name,
                 MatchKey = message.Room.MatchKey,
-                TimeLimit = TimeSpan.FromMinutes(message.Room.TimeLimit),
+                TimeLimit = TimeSpan.FromMinutes(minutes),
                 ScoreLimit = message.Room.ScoreLimit,
                 Password = message.Room.Password,
                 IsFriendly = message.Room.IsFriendly,

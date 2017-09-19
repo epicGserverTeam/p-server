@@ -16,6 +16,7 @@ namespace Netsphere.Game
             Add(GameRule.Deathmatch, room => new DeathmatchGameRule(room));
             Add(GameRule.Chaser, room => new ChaserGameRule(room));
             Add(GameRule.BattleRoyal, room => new BattleRoyalGameRule(room));
+            Add(GameRule.Captain, room => new CaptainGameRule(room));
         }
 
         public void Add(GameRule gameRule, Func<Room, GameRuleBase> gameRuleFactory)
